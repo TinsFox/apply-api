@@ -2,7 +2,7 @@ from flask import request, current_app
 import requests
 # ----------------------------------------------
 from api import SmallBlueprint
-from libs.token import generate_token, auth
+from libs.token import generate_token
 from libs.exceptions.errors import AuthLoginFailed, AuthLoginSuccess
 
 auth_api = SmallBlueprint('auth')
@@ -42,3 +42,13 @@ def request_wx_api(app_id, app_secret, code):
     if 'errcode' in content.keys() and content.get('errcode') == 0:
         raise AuthLoginFailed(msg=errcode[content.get('errcode')])
     return content.get('openid')
+
+
+@auth_api.route('/admin-login', methods=['POST'])
+def admin_login():
+    """ 管理员登录 """
+    admin = request.form.get('account')
+    pwd = request.form.get('password')
+    if current_app.config['ACCOUNT'] != admin or current_app.config['PASSWORD'] != pwd:
+        raise AuthLoginFailed()
+    return AuthLoginSuccess(generate_token())

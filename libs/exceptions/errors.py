@@ -61,5 +61,19 @@ class SaveFailed(ApiHttpException):
     errcode = 4015
 
 
+class Forbidden(ApiHttpException):
+    code = 403
+    message = '该页面禁止访问'
+    errcode = 4016
+
+
+class NotFound(ApiHttpException):
+    code = 404
+    message = '该用户不存在'
+    errcode = 4017
+
+
+
+
 
 
