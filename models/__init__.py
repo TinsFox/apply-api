@@ -16,5 +16,4 @@ class SQLAlchemy(_SQLAlchemy):
 
 db = SQLAlchemy()
 
-
-from models import user
+from models import apply, admin

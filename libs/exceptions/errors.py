@@ -1,4 +1,4 @@
-from libs.exceptions.base_error import ApiHttpException
+from libs.exceptions.base import ApiHttpException
 
 
 class InvalidToken(ApiHttpException):
@@ -73,6 +73,15 @@ class NotFound(ApiHttpException):
     errcode = 4017
 
 
+class FormError(ApiHttpException):
+    code = 404
+    errcode = 4017
+
+
+class ServerError(ApiHttpException):
+    code = 500
+    message = '服务器内部错误'
+    errcode = 4017
 
 
 

@@ -1,9 +1,6 @@
 from flask import Blueprint
 
 
-Auth = True
-
-
 class SmallBlueprint(object):
     def __init__(self, name, url_prefix=None):
         self.url_list = []
@@ -30,12 +27,10 @@ class SmallBlueprint(object):
 def api_blueprint():
     api_bp = Blueprint('api', __name__, url_prefix='/api')
 
-    from api.auth_login import auth_api
-    from api.apply import apply_api
-    from api.get_info import admin_api
+    from api import login, apply, get_info
 
-    auth_api.register(api_bp)
-    apply_api.register(api_bp)
-    admin_api.register(api_bp)
+    login.api.register(api_bp)
+    apply.api.register(api_bp)
+    get_info.api.register(api_bp)
 
     return api_bp
