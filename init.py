@@ -1,9 +1,9 @@
 from models import db
-from api import api_blueprint
+from api import api_blueprint, api_bp
 
 
 def create_app(o):
-    api = api_blueprint()
+    api = api_blueprint(api_bp)
     o.config.from_object('config.config')
     o.config.from_object('config.secret_config')
     db.init_app(app=o)

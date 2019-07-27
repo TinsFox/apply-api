@@ -1,11 +1,14 @@
 from flask.json import JSONEncoder as _JSONEncoder
 from flask import Flask as _Flask
+from datetime import datetime
 # ------------------------------------------
 from init import create_app
 
 
 class JSONEncoder(_JSONEncoder):
     def default(self, o):
+        if isinstance(o, datetime):
+            return o.strftime('%Y-%m-%d')
         return dict(o)
 
 

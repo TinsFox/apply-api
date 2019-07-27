@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy
 from contextlib import contextmanager
-from libs.exceptions.errors import SaveFailed
+import time
+import hashlib
+from libs.exceptions.errors import ServerError
 
 
 class SQLAlchemy(_SQLAlchemy):
@@ -10,10 +12,21 @@ class SQLAlchemy(_SQLAlchemy):
             yield
             self.session.commit()
         except Exception as error:
+            print(error)
             db.session.rollback()
-            raise SaveFailed(msg=error)
+            raise ServerError()
+
+
+def get_time():
+    return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+
+
+def create_id(data):
+    md5 = hashlib.md5()
+    md5.update(data.encode())
+    return md5.hexdigest()
 
 
 db = SQLAlchemy()
 
-from models import apply, admin
+from models import admin, community

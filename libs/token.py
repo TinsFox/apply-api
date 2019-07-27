@@ -16,7 +16,7 @@ def generate_token():
         'appid': current_app.config.get('APP_ID'),
         'appsceret': current_app.config.get('APP_SECRET'),
         'scope': g.info['scope'],
-        'society': g.info['society']
+        'society_id': g.info['society_id']
     })
     return acess_token.decode()
 
@@ -36,7 +36,8 @@ def verify_token(token):
     else:
         auth_status = scope(data['scope'], request.endpoint)
         if auth_status:
-            g.society = data['society']
+            g.society_id = data['society_id']
+            g.scope = data['scope']
             return True
         raise Forbidden()
 

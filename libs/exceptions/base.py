@@ -28,16 +28,41 @@ class ApiHttpException(HTTPException):
 class AuthSuccess(ApiHttpException):
     code = 200
     message = '登录成功'
-    errcode = 1000
+    errcode = 0
 
 
 class UpdateSuccess(ApiHttpException):
     code = 200
     message = '密码修改成功'
-    errcode = 1001
+    errcode = 0
 
 
 class RegisterSuccess(ApiHttpException):
     code = 200
     message = '管理员注册成功'
-    errcode = 1001
+    errcode = 0
+
+
+class AuthLoginSuccess(ApiHttpException):
+    code = 201
+    message = "授权成功"
+    errcode = 0
+
+    def __init__(self, token):
+        super(AuthLoginSuccess, self).__init__()
+        self.token = token
+
+    @property
+    def generate_body(self):
+        return {
+            'message': self.message,
+            'errcode': self.errcode,
+            'access_token': self.token,
+        }
+
+
+
+class DeleteSuccess(ApiHttpException):
+    code = 200
+    message = '删除成功'
+    errcode = 0

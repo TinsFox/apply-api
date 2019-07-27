@@ -1,5 +1,7 @@
 from flask import Blueprint
 
+api_bp = Blueprint('api', __name__, url_prefix='/api')
+
 
 class SmallBlueprint(object):
     def __init__(self, name, url_prefix=None):
@@ -24,13 +26,15 @@ class SmallBlueprint(object):
             app.add_url_rule(self.rule, enpoint, view_func, **options)
 
 
-def api_blueprint():
-    api_bp = Blueprint('api', __name__, url_prefix='/api')
+def api_blueprint(api_bp):
 
-    from api import login, apply, get_info
+    from api import apply, info, super_admin, open, admin
 
-    login.api.register(api_bp)
+    admin.api.register(api_bp)
     apply.api.register(api_bp)
-    get_info.api.register(api_bp)
+    info.api.register(api_bp)
+    super_admin.api.register(api_bp)
+    open.api.register(api_bp)
+
 
     return api_bp
