@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from flask_httpauth import HTTPTokenAuth
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
 from flask import current_app, request, g

@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from werkzeug.exceptions import HTTPException
 from flask import json
 

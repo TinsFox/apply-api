@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 class SocietyScope(object):
     # append_section: 添加部门信息
     # delete_section: 删除部门信息

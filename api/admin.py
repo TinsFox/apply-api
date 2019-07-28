@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from flask import request, jsonify, g, Response, stream_with_context, current_app
 # ----------------------------------------------
 from api import SmallBlueprint

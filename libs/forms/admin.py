@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from wtforms import StringField, PasswordField, Form
 from wtforms.validators import DataRequired, Length, EqualTo, Regexp
 # -------------------------

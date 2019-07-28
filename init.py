@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from models import db
 from api import api_blueprint, api_bp
 

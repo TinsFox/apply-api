@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from flask import request
 
 from api import SmallBlueprint

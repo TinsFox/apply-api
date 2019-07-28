@@ -1,3 +1,4 @@
+# -*-coding:utf8 -*-
 from libs.exceptions.base import ApiHttpException
 
 
