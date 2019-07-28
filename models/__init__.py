@@ -1,11 +1,11 @@
-from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy as __SQLAlchemy
 from contextlib import contextmanager
 import time
 import hashlib
 from libs.exceptions.errors import ServerError
 
 
-class SQLAlchemy(_SQLAlchemy):
+class SQLAlchemy(__SQLAlchemy):
     @contextmanager
     def auto_commit(self):
         try:

@@ -2,8 +2,9 @@
 
 - 环境配置 
 ```
- pip install -r
+ python setup.py install
  ```
+ 
  
  
  
