@@ -139,7 +139,7 @@
 {
   "errcode": 0,
   "message": {
-    "body": {内容}
+    "body": {"内容"}
     },
   "update_time":""
 ```
@@ -163,8 +163,8 @@
 	"email":"邮箱[必填]",
 	"section_id": "意向部门编号[必填]",
 	"society_id": "社团编号[必填]",
-	"second_section_id": "第二意向部门编号[选填]-默认[无]"
-	"adjust":"服从/不服从调剂[选填]-默认[不服从]"
+	"second_section_id": "第二意向部门编号[选填]-默认[无]",
+	"adjust":"服从/不服从调剂[选填]-默认[不服从]",
 	"skill":"技能[必填]",
 	"other_organization":"是否加入其他组织[选填]-默认[无]",
 	"introduction":"简介[必填]",
