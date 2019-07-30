@@ -41,7 +41,7 @@ class Admin(BaseModel):
             if not check_password_hash(admin.password, old_pwd):
                 raise AuthFailed('旧密码错误')
             admin.password = generate_password_hash(new_pwd)
-            admin.update_time = Admin.generate_datetime
+            admin.update_time = admin.generate_datetime
 
 
 
