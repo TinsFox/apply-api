@@ -1,4 +1,4 @@
-# -*-coding:utf8 -*-
+# -*- coding: utf8 -*-
 from flask import Blueprint
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
@@ -28,14 +28,14 @@ class SmallBlueprint(object):
 
 
 def api_blueprint(api_bp):
-
-    from api import apply, info, super_admin, open, admin
+    from api.v1 import admin, client, open, super_admin, info, download
 
     admin.api.register(api_bp)
-    apply.api.register(api_bp)
-    info.api.register(api_bp)
-    super_admin.api.register(api_bp)
+    client.api.register(api_bp)
     open.api.register(api_bp)
-
+    super_admin.api.register(api_bp)
+    info.api.register(api_bp)
+    download.api.register(api_bp)
 
     return api_bp
+

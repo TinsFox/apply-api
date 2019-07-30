@@ -1,4 +1,4 @@
-# -*-coding:utf8 -*-
+# -*- coding: utf8 -*-
 from werkzeug.exceptions import HTTPException
 from flask import json
 
@@ -62,8 +62,7 @@ class AuthLoginSuccess(ApiHttpException):
         }
 
 
-
 class DeleteSuccess(ApiHttpException):
     code = 200
-    message = '删除成功'
+    message = u'删除成功'
     errcode = 0
