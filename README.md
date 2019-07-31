@@ -17,13 +17,13 @@ EXPIRATION = 60 * 60 * 2
  ### 项目运行
  - python run.py
 
- - 或者以下方式运行
+ ### 服务器部署
  ```shell
  # 安装 gunicorn
  pip install gunicoern
 
  # 运行下面命令
- gunicorn -w 4 -b 0.0.0.0:5000 run:app
+ nohup gunicorn -w 4 -b 0.0.0.0:5000 run:app &
 ```
  
  ### 请求携带token

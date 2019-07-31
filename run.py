@@ -2,6 +2,7 @@
 from flask.json import JSONEncoder as _JSONEncoder
 from flask import Flask as _Flask
 from datetime import datetime
+from flask_cors import CORS
 # ------------------------------------------
 from init import create_app
 
@@ -17,7 +18,9 @@ class Flask(_Flask):
     json_encoder = JSONEncoder
 
 
-app = create_app(Flask(__name__))
+init_app = Flask(__name__)
+CORS(init_app)
+app = create_app(init_app)
 
 
 if __name__ == '__main__':
