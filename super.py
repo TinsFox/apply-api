@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from flask import Flask
 from werkzeug.security import generate_password_hash
 from models.admin import Admin
@@ -14,6 +15,6 @@ with app.app_context():
         user = Admin()
         user.account = 'super'
         user.password = generate_password_hash('123456')
-        user.id = generate_id('超级管理员')
+        user.id = generate_id(u'超级管理员')
         user.auth = 2
         db.session.add(user)

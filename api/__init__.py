@@ -1,7 +1,10 @@
 # -*- coding: utf8 -*-
 from flask import Blueprint
+from flask_cors import CORS
+
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
+CORS(app=api_bp, supports_credentials=True)
 
 
 class SmallBlueprint(object):

@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from flask import request, jsonify, g
 from api import SmallBlueprint
 from libs.exceptions import EmptyError, DeleteSuccess, UpdateSuccess, RegisterSuccess

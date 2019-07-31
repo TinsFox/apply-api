@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from flask import request, g, jsonify
 from models.admin import Admin
 from api import SmallBlueprint
