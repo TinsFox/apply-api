@@ -34,6 +34,7 @@ def login():
     g.info = Admin.login_verify(form.account.data, form.password.data)
     token = {
         'acess_token': generate_token(),
+        'scope': g.info['scope'],
         'message': '登录成功',
         'errcode': 0
     }

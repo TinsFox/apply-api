@@ -8,7 +8,7 @@ class Society(BaseModel):
     """ 社团 """
     __tablename__ = 'society'
     id = Column(VARCHAR(64), primary_key=True, comment='社团编号')
-    name = Column('Society Name', VARCHAR(50), nullable=False, comment='社团名称')
+    name = Column('Society Name', VARCHAR(80), nullable=False, comment='社团名称')
 
     @staticmethod
     def insert(name):
@@ -26,7 +26,7 @@ class Section(BaseModel):
     """ 部门 """
     __tablename__ = 'section'
     id = Column(VARCHAR(64), primary_key=True, comment='部门编号')
-    name = Column('Section Name', VARCHAR(50), nullable=False, comment='部门名称')
+    name = Column('Section Name', VARCHAR(60), nullable=False, comment='部门名称')
     society_id = Column(VARCHAR(64), ForeignKey("society.id"), nullable=False, comment='社团名称')
     society = db.relationship('Society', backref='sections')
 
@@ -65,10 +65,10 @@ class Apply(BaseModel):
     id = Column('ID', INTEGER, primary_key=True, autoincrement=True, comment='序号')
 
     student_id = Column('Student ID', VARCHAR(12), nullable=False, comment='学号')
-    name = Column('Name', VARCHAR(30), nullable=False, comment='名字')
-    sex = Column('Sex', VARCHAR(6), nullable=False, comment='性别')
-    college = Column('College', VARCHAR(50), nullable=False, comment='学院')
-    profession = Column('Professional', VARCHAR(75), nullable=False, comment='专业')
+    name = Column('Name', VARCHAR(40), nullable=False, comment='名字')
+    sex = Column('Sex', VARCHAR(8), nullable=False, comment='性别')
+    college = Column('College', VARCHAR(80), nullable=False, comment='学院')
+    profession = Column('Professional', VARCHAR(100), nullable=False, comment='专业')
     once_work = Column('Once Work', VARCHAR(50), comment='曾任职务')
     # ----------------------------------------------------------------
     phone = Column('Phone', VARCHAR(11), nullable=False, comment='联系电话')
@@ -76,10 +76,10 @@ class Apply(BaseModel):
     society_id = Column('Society ID', VARCHAR(64), nullable=False, comment='社团编号')
     section_id = Column(VARCHAR(64), ForeignKey('section.id'), nullable=False, comment='意向部门编号')
     second_section_id = Column('Second Section', VARCHAR(64), comment='第二意向部门编号')
-    adjust = Column('Adjust', VARCHAR(9), comment='是否服从调剂')
+    adjust = Column('Adjust', VARCHAR(12), comment='是否服从调剂')
     # ------------------------------------------------------------------
     skill = Column('Skill', TEXT, nullable=False, comment='特长技能')
-    other_organization = Column('Other Organization', VARCHAR(50), comment='兼其他社团')
+    other_organization = Column('Other Organization', VARCHAR(60), comment='兼其他社团')
     introduction = Column('Introduction', TEXT, nullable=False, comment='个人简介')
     new_idea = Column('Idea', TEXT, nullable=False, comment='新奇的想法')
     reason = Column('Reason', TEXT, nullable=False, comment='为什么加入团队')
