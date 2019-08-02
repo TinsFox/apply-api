@@ -20,7 +20,7 @@ EXPIRATION = 60 * 60 * 2
  ### 服务器部署
  ```shell
  # 安装 gunicorn
- pip install gunicoern
+ pip install gunicorn
 
  # 运行下面命令
  nohup gunicorn -w 4 -b 0.0.0.0:5000 run:app &
