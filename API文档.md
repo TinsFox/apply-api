@@ -16,13 +16,13 @@
 ```
 - 成功返回值:
 ```json
- "message": "注册成功",
- "errcode": 0
+ "data": "注册成功",
+ "code": 0
 ```
 - 失败返回值
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -41,13 +41,15 @@
 - 成功返回值:
 ```json
  "acess_token": "token值",
- "message": "登录成功",
- "errcode": 0
+ "data": "登录成功",
+ "code": 0
+ "name": "社团/超级管理员",
+ "id": "ID"
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -67,13 +69,13 @@
 ```
 - 成功返回值:
 ```json
- "message": "密码修改成功",
- "errcode": 0
+ "data": "密码修改成功",
+ "code": 0
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -86,8 +88,8 @@
 ```json
  {
     "count": "总社团数量",
-    "errcode": 0,
-    "message": [
+    "code": 0,
+    "data": [
         {
             "id": "社团编号",
             "name": "名字",
@@ -98,8 +100,8 @@
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -112,8 +114,8 @@
 ```json
 {
   "count": "当前社团的部门的数量",
-  "errcode": 0,
-  "message": [
+  "code": 0,
+  "data": [
     {
       "id": "部门编号",
       "name": "名称",
@@ -124,8 +126,8 @@
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -137,8 +139,8 @@
 - 成功返回值:
 ```json
 {
-  "errcode": 0,
-  "message": {
+  "code": 0,
+  "data": {
     "body": {"内容"}
     },
   "update_time":""
@@ -174,8 +176,8 @@
 ```
 - 成功返回值:
 ```json
- "message": "报名成功",
- "errcode": 0
+ "data": "报名成功",
+ "code": 0
 ```
 <hr/>
 
@@ -193,8 +195,8 @@
 - 成功返回值:
 ```json
 {
-  "errcode": 0,
-  "message": "保存成功"
+  "code": 0,
+  "data": "保存成功"
 ```
 <hr/>
 
@@ -214,15 +216,15 @@
 - 成功返回值:
 ```json
 {
-   "message": "添加部门成功",
-   "errcode": 0,
+   "data": "添加部门成功",
+   "code": 0,
    "count": "添加成功数量, 0即不成功"
 }
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -234,13 +236,13 @@
 - 说明: 部门连同该部门的报名信息都会删除掉
 - 成功返回值:
 ```json
- "message": "删除成功",
- "errcode": 0
+ "data": "删除成功",
+ "code": 0
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -252,8 +254,8 @@
 - 成功返回值:
 ```json
 {
-    "errcode": 0,
-    "message": {
+    "code": 0,
+    "data": {
         "adjust": "",
         "college": "",
         "email": "",
@@ -276,8 +278,8 @@
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -289,14 +291,14 @@
 - 成功返回值:
 ```json
 {
-    "errcode": 0,
-    "message": ["信息"]
+    "code": 0,
+    "data": ["信息"]
 }
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -308,8 +310,8 @@
 - 成功返回值:
 ```json
 {
-    "errcode": 0,
-    "message": {
+    "code": 0,
+    "data": {
                 "部门1":["信息1"],
                 "部门2":["信息2"],
                 }
@@ -317,8 +319,8 @@
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -329,14 +331,14 @@
 - 权限: 社团管理员
 - 成功返回值:
 ```json
- "message": ["部门列表"],
+ "data": ["部门列表"],
  "count": "部门数量",
- "errcode": 0
+ "code": 0
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -349,14 +351,14 @@
 - 成功返回值:
 ```json
 {
-    "errcode": 0,
-    "message": "重置成功"
+    "code": 0,
+    "data": "重置成功"
 }
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -375,22 +377,46 @@
 - 成功返回值:
 ```json
 {
-    "errcode": 0,
-    "message": "信息保存成功"
+    "code": 0,
+    "data": "信息保存成功"
 }
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
 ### 文件下载
 - [x] 测试
 - 请求方式: ***GET***
-- API: *http://127.0.0.1:5000/api/admin/download/apply.csv*
+- API: *http://127.0.0.1:5000/api/admin/download*
 - 权限: 社团管理员/超级管理员
+<hr/>
+
+### 文件上传
+- [x] 测试
+- 请求方式: ***POST***
+- API: *http://127.0.0.1:5000/api/admin/upload*
+- 权限: 超级管理员
+- 支持文件后缀类型: `.csv`或`.xls`
+- 表的格式
+![表的格式](http://tva1.sinaimg.cn/large/0060lm7Tly1g5mybi3mxpj30cn02s0sw.jpg
+)
+- 成功返回值:
+```json
+{
+    "code": 0,
+    "data": "添加社团/部门成功",
+    "count": "成功数量(社团的数量)"
+}
+```
+- 失败返回值:
+```json
+ "data": "失败信息",
+ "code": "错误码"
+```
 <hr/>
 
 ### 添加社团
@@ -413,14 +439,14 @@
 ```json
 {
     "count": "添加成功的数目",
-    "errcode": 0,
-    "message": "添加社团成功"
+    "code": 0,
+    "data": "添加社团成功"
 }
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>
 
@@ -433,13 +459,13 @@
 - 成功返回值:
 ```json
 {
-    "errcode": 0,
-    "message": "添加社团成功"
+    "code": 0,
+    "data": "添加社团成功"
 }
 ```
 - 失败返回值:
 ```json
- "message": "失败信息",
- "errcode": "错误码"
+ "data": "失败信息",
+ "code": "错误码"
 ```
 <hr/>

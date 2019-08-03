@@ -39,7 +39,7 @@ def append_section():
 def delete_section(id):
     """
     # 社团管理员删除部门,连同用户信息一起删除
-    # status: TODO
+    # status: OVER
     :param id: 部门唯一身份标识
     :return:
     """

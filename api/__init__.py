@@ -31,14 +31,14 @@ class SmallBlueprint(object):
 
 
 def api_blueprint(api_bp):
-    from api.v1 import admin, client, open, super_admin, info, download
+    from api.v1 import admin, client, open, super_admin, info, file
 
     admin.api.register(api_bp)
     client.api.register(api_bp)
     open.api.register(api_bp)
     super_admin.api.register(api_bp)
     info.api.register(api_bp)
-    download.api.register(api_bp)
+    file.api.register(api_bp)
 
     return api_bp
 
