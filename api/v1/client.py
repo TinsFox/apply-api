@@ -35,8 +35,11 @@ def login():
     token = {
         'acess_token': generate_token(),
         'scope': g.info['scope'],
-        'message': '登录成功',
-        'errcode': 0
+        'data': '登录成功',
+        'code': 0,
+        'name': g.info['name'],
+        'id': g.info['society_id']
+
     }
     return jsonify(token)
 

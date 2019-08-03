@@ -3,6 +3,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # --------------------------------------------------------------------------
 from libs.exceptions import AuthFailed
 from models.base_model import BaseModel
+from models.community import Society
 from models import db
 
 
@@ -29,9 +30,14 @@ class Admin(BaseModel):
     def login_verify(account, pwd):
         """ 管理员登录验证 """
         admin = Admin.query.filter_by(account=account).first_or_404()
+        if admin.auth == 1:
+            society = Society.query.get_or_404(admin.id, description=u"该管理员账号对应的社团不存在")
+            name = society.name
+        else:
+            name = '超级管理员'
         if not check_password_hash(admin.password, pwd):
             raise AuthFailed('密码错误')
-        return {'society_id': admin.id, 'scope': admin.auth}
+        return {'society_id': admin.id, 'scope': admin.auth, 'name': name}
 
     @staticmethod
     def change_password(account, old_pwd, new_pwd):

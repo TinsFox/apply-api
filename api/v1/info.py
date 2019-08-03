@@ -25,8 +25,8 @@ def user_info(id):
     user = Apply.query.filter_by(student_id=id, society_id=g.society_id).first_or_404()
     data = dict(user, **{'section': user.section.name, 'society': user.section.society.name})
     return jsonify({
-        'message': data,
-        'errcode': 0
+        'data': data,
+        'code': 0
     })
 
 
@@ -42,8 +42,8 @@ def section_info(id):
     section = Section.query.filter_by(id=id, society_id=g.society_id).first_or_404(description=u'该部门不存在')
     data = [dict(user, **{'section': section.name, 'society': section.society.name}) for user in section.applies]
     return jsonify({
-        'message': data,
-        'errcode': 0
+        'data': data,
+        'code': 0
     })
 
 
@@ -60,6 +60,6 @@ def society_info():
         data[section.name].extend([dict(user, **{'section': user.section.name, 'society': user.section.society.name})
                                    for user in section.applies])
     return jsonify({
-        'message': data,
-        'errcode': 0
+        'data': data,
+        'code': 0
     })

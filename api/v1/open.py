@@ -24,9 +24,9 @@ def society_list():
     if not society.all():
         raise EmptyError(u'当前社团列表为空')
     return jsonify({
-        'message': society.all(),
+        'data': society.all(),
         'count': society.count(),
-        'errcode': 0
+        'code': 0
     })
 
 
@@ -40,8 +40,8 @@ def section_list(id):
     """
     society = Society.query.get_or_404(id)
     return jsonify({
-            'message': [section for section in society.sections],
-            'errcode': 0,
+            'data': [section for section in society.sections],
+            'code': 0,
             'count': len(society.sections)
         })
 
@@ -56,8 +56,8 @@ def get_brief(id):
     """
     rich_text = RichText.query.get_or_404(id, description=u'该社团不存在简介')
     return jsonify({
-        'message': rich_text,
-        'errcode': 0
+        'data': rich_text,
+        'code': 0
     })
 
 

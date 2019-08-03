@@ -26,8 +26,8 @@ def append_society():
             Society.insert(value)
             count += 1
     return jsonify({
-        'message': '添加社团成功',
-        'errcode': 0,
+        'data': '添加社团成功',
+        'code': 0,
         'count': count
     })
 

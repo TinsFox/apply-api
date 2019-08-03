@@ -15,8 +15,8 @@ class ApiHttpException(HTTPException):
     @property
     def generate_body(self):
         return {
-            'message': self.message,
-            'errcode': self.errcode,
+            'data': self.message,
+            'code': self.errcode,
         }
 
     def get_body(self, environ=None):

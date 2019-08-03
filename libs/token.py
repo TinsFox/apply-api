@@ -17,7 +17,7 @@ def generate_token():
         'appid': current_app.config.get('APP_ID'),
         'appsceret': current_app.config.get('APP_SECRET'),
         'scope': g.info['scope'],
-        'society_id': g.info['society_id']
+        'society_id': g.info['society_id'],
     })
     return acess_token.decode()
 

@@ -35,7 +35,7 @@ class Section(BaseModel):
         """ 填写部门信息 """
         with db.auto_commit():
             section = Section()
-            print(generate_id("{0}-{1}".format(o.name, name)))
+            # print(generate_id("{0}-{1}".format(o.name, name)))
             section.id = generate_id("{0}-{1}".format(o.name, name))
             section.name = name
             section.society_id = o.id

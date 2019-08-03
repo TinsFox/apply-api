@@ -28,8 +28,8 @@ def append_section():
             Section.insert(society, value)
             count += 1
     return jsonify({
-            'message': '添加部门成功',
-            'errcode': 0,
+            'data': '添加部门成功',
+            'code': 0,
             'count': count
         })
 
@@ -89,8 +89,8 @@ def admin_section_list():
     """
     society = Society.query.get_or_404(g.society_id, description=u'获取信息失败,该社团不存在')
     return jsonify({
-        'message': [section for section in society.sections],
-        'errcode': 0,
+        'data': [section for section in society.sections],
+        'code': 0,
         'count': len(society.sections)
     })
 
