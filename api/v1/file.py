@@ -39,6 +39,7 @@ def file_download():
 
 
 @api.route('/upload', methods=['POST'])
+@auth.login_required
 def file_upload():
     """
     # 文件上传
