@@ -6,11 +6,10 @@ from libs.token import auth
 from models.community import Section, Society, Apply
 from models.rich_text import RichText
 
+api = SmallBlueprint('admin', url_prefix='/v1')
 
-api = SmallBlueprint('admin', url_prefix='/admin')
 
-
-@api.route('/append-section', methods=['POST'])
+@api.route('/section', methods=['POST'])
 @auth.login_required
 def append_section():
     """
@@ -27,14 +26,10 @@ def append_section():
         if not Section.query.filter_by(society_id=g.society_id, name=value).first():
             Section.insert(society, value)
             count += 1
-    return jsonify({
-            'data': '添加部门成功',
-            'code': 0,
-            'count': count
-        })
+    return RegisterSuccess(msg=u'部门添加成功', data={'count': count})
 
 
-@api.route('/delete-section/<string:id>', methods=['DELETE'])
+@api.route('/section/<string:id>', methods=['DELETE'])
 @auth.login_required
 def delete_section(id):
     """
@@ -46,10 +41,10 @@ def delete_section(id):
     section = Section.query.get_or_404(id, description=u'删除失败, 该部门不存在')
     Apply.delete(section.applies)
     section.delete()
-    return DeleteSuccess()
+    return DeleteSuccess(msg=u'部门删除成功')
 
 
-@api.route('/append-brief', methods=['POST'])
+@api.route('/brief', methods=['POST'])
 @auth.login_required
 def append_brief():
     """
@@ -58,13 +53,15 @@ def append_brief():
     :return:
     """
     data = request.json
+    if not data:
+        raise EmptyError()
     rich_text = RichText.query.filter_by(id=g.society_id).first()
     if rich_text:
         RichText.update(g.society_id, rich_text)
-        return UpdateSuccess(u'信息更新成功')
+        return UpdateSuccess(msg=u'社团简介更新成功')
     else:
         RichText.insert(g.society_id, data)
-        return RegisterSuccess(u'信息保存成功')
+        return RegisterSuccess(msg=u'社团简介添加成功')
 
 
 @api.route('/reset', methods=['DELETE'])
@@ -77,10 +74,10 @@ def reset_society():
     society = Society.query.get_or_404(g.society_id, description=u'重置失败,该社团不存在')
     for section in society.sections:
         Apply.delete(section.applies)
-    return DeleteSuccess(u'重置成功')
+    return DeleteSuccess(u'社团报名信息重置成功')
 
 
-@api.route('/admin-section-list', methods=['GET'])
+@api.route('/section', methods=['GET'])
 @auth.login_required
 def admin_section_list():
     """
@@ -91,6 +88,5 @@ def admin_section_list():
     return jsonify({
         'data': [section for section in society.sections],
         'code': 0,
-        'count': len(society.sections)
+        'msg': '%s的部门列表' % society.name
     })
-

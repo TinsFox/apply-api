@@ -6,10 +6,10 @@ from api import SmallBlueprint
 from libs.token import auth
 from models.community import Society, Apply, Section
 from models import generate_id
-from libs.exceptions import FormError
+from libs.exceptions import FormError, RegisterSuccess
 
 
-api = SmallBlueprint('download', url_prefix='/admin')
+api = SmallBlueprint('download', url_prefix='/v1')
 
 
 @api.route('/download', methods=['GET'])
@@ -72,12 +72,8 @@ def file_upload():
                             Section.insert(society, row)
                     count += 1
     else:
-        raise FormError(u'文件上传失败,文件后缀错误')
-    return jsonify({
-        'data': '数据导入成功',
-        'count': success_count,
-        'code': 200
-    })
+        raise FormError(msg=u'文件上传失败,文件后缀错误')
+    return RegisterSuccess(msg=u'数据导入成功', data={'count': success_count})
 
 
 def allowed_file(filename):

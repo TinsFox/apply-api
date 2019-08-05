@@ -72,7 +72,7 @@ class Apply(BaseModel):
     once_work = Column('Once Work', VARCHAR(50), comment='曾任职务')
     # ----------------------------------------------------------------
     phone = Column('Phone', VARCHAR(11), nullable=False, comment='联系电话')
-    email = Column('Email', VARCHAR(50), nullable=False, comment='邮箱')
+    email = Column('Email', VARCHAR(50), comment='邮箱')
     society_id = Column('Society ID', VARCHAR(64), nullable=False, comment='社团编号')
     section_id = Column(VARCHAR(64), ForeignKey('section.id'), nullable=False, comment='意向部门编号')
     second_section_id = Column('Second Section', VARCHAR(64), comment='第二意向部门编号')

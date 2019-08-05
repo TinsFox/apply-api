@@ -4,19 +4,22 @@ from flask import json
 
 
 class ApiHttpException(HTTPException):
-    message = None
+    message = "服务器繁忙"
     errcode = None
+    data = []
 
-    def __init__(self, msg=None):
+    def __init__(self, msg=None, data=None):
         super(ApiHttpException, self).__init__(msg)
         if msg is not None:
             self.message = msg
+        if data is not None:
+            self.data = data
 
     @property
     def generate_body(self):
         return {
-            'data': self.message,
             'code': self.errcode,
+            'msg': self.message,
         }
 
     def get_body(self, environ=None):
@@ -26,43 +29,48 @@ class ApiHttpException(HTTPException):
         return [('Content-Type', 'application/json')]
 
 
-class AuthSuccess(ApiHttpException):
-    code = 200
-    message = '登录成功'
-    errcode = 0
-
-
-class UpdateSuccess(ApiHttpException):
-    code = 200
-    message = '密码修改成功'
-    errcode = 0
-
-
-class RegisterSuccess(ApiHttpException):
-    code = 200
-    message = '管理员注册成功'
-    errcode = 0
-
-
-class AuthLoginSuccess(ApiHttpException):
-    code = 201
-    message = "授权成功"
-    errcode = 0
-
-    def __init__(self, token):
-        super(AuthLoginSuccess, self).__init__()
-        self.token = token
-
+class ApiSuccess(ApiHttpException):
     @property
     def generate_body(self):
-        return {
-            'message': self.message,
-            'errcode': self.errcode,
-            'access_token': self.token,
+        t = {
+            'code': self.errcode,
+            'msg': self.message,
+        }
+        if self.data:
+            return dict(t, **{'data': self.data if isinstance(self.data, list) else [self.data]})
+        else:
+            return {
+            'code': self.errcode,
+            'msg': self.message,
+            'data': []
         }
 
 
-class DeleteSuccess(ApiHttpException):
+class AuthSuccess(ApiSuccess):
+    """ 授权 """
+    code = 200
+    errcode = 0
+
+
+class UpdateSuccess(ApiSuccess):
+    """ 更新 """
+    code = 200
+    errcode = 0
+
+
+class RegisterSuccess(ApiSuccess):
+    """ 添加 """
+    code = 200
+    errcode = 0
+
+
+class DeleteSuccess(ApiSuccess):
+    """ 删除 """
     code = 200
     message = u'删除成功'
+    errcode = 0
+
+
+class ViewSuccess(ApiSuccess):
+    code = 200
     errcode = 0

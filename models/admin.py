@@ -42,12 +42,12 @@ class Admin(BaseModel):
     @staticmethod
     def change_password(account, old_pwd, new_pwd):
         """ 修改密码 """
-        with db.auto_commit():
-            admin = Admin.query.filter_by(account=account).first_or_404()
-            if not check_password_hash(admin.password, old_pwd):
-                raise AuthFailed('旧密码错误')
-            admin.password = generate_password_hash(new_pwd)
-            admin.update_time = admin.generate_datetime
+        admin = Admin.query.filter_by(account=account).first_or_404()
+        if not check_password_hash(admin.password, old_pwd):
+            raise AuthFailed(msg=u'旧密码错误')
+        admin.password = generate_password_hash(new_pwd)
+        admin.update_time = admin.generate_datetime
+        db.session.commit()
 
 
 

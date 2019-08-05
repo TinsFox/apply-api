@@ -16,7 +16,7 @@ class ApplyFrom(BaseForm):
     once_work = StringField()
 
     phone = StringField(validators=[DataRequired(), Length(11, 11)])
-    email = StringField(validators=[DataRequired(), Length(6, 25)])
+    email = StringField(validators=[Length(6, 25)])
     section_id = StringField(validators=[DataRequired()])
     second_section_id = StringField()
     adjust = StringField()

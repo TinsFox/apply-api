@@ -1,13 +1,13 @@
 # -*- coding: utf8 -*-
-from flask import request, g, jsonify
+from flask import request, g
 from models.admin import Admin
 from api import SmallBlueprint
 from libs.token import generate_token
 from libs.forms.admin import AdminRegisterForm, AdminLoginForm, AdminChangePwdForm
-from libs.exceptions import RegisterSuccess, UpdateSuccess, RegisterFailed
+from libs.exceptions import RegisterSuccess, AuthSuccess, UpdateSuccess, RegisterFailed
 
 
-api = SmallBlueprint('client', url_prefix='/open')
+api = SmallBlueprint('client', url_prefix='/v1')
 
 
 @api.route('/register/<string:id>', methods=['POST'])
@@ -21,7 +21,7 @@ def register(id):
         raise RegisterFailed(u'该社团已注册管理员')
     form = AdminRegisterForm(data=request.json).validate_or_error()
     Admin.register(id, form.account.data, form.password.data)
-    return RegisterSuccess()
+    return RegisterSuccess(msg=u'账号注册成功')
 
 
 @api.route('/login', methods=['POST'])
@@ -35,13 +35,10 @@ def login():
     token = {
         'acess_token': generate_token(),
         'scope': g.info['scope'],
-        'data': '登录成功',
-        'code': 0,
         'name': g.info['name'],
         'id': g.info['society_id']
-
     }
-    return jsonify(token)
+    return AuthSuccess(msg=u'账号登录成功', data=token)
 
 
 @api.route('/change', methods=['PUT'])
@@ -49,4 +46,4 @@ def change_password():
     """ 修改密码 """
     form = AdminChangePwdForm(data=request.json).validate_or_error()
     Admin.change_password(form.account.data, form.old_pwd.data, form.new_pwd.data)
-    return UpdateSuccess()
+    return UpdateSuccess(msg='密码修改成功')
