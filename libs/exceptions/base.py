@@ -35,15 +35,32 @@ class ApiSuccess(ApiHttpException):
         t = {
             'code': self.errcode,
             'msg': self.message,
+            'data':
+                {
+                    'list': []
+                }
         }
         if self.data:
-            return dict(t, **{'data': self.data if isinstance(self.data, list) else [self.data]})
+            return dict(t, **{'data': {'list': self.data if isinstance(self.data, list) else [self.data]}})
         else:
-            return {
+            return t
+
+
+class ApiFailed(ApiHttpException):
+    @property
+    def generate_body(self):
+        t = {
             'code': self.errcode,
             'msg': self.message,
-            'data': []
+            'data':
+                {
+                    'errlist': []
+                }
         }
+        if self.data:
+            return dict(t, **{'data': {'errlist': self.data if isinstance(self.data, list) else [self.data]}})
+        else:
+            return t
 
 
 class AuthSuccess(ApiSuccess):

@@ -67,9 +67,9 @@ def user_apply():
     ApplyFrom(data=data).validate_or_error()
     if Apply.query.filter_by(student_id=data.get('student_id'), society_id=data.get('society_id')).first():
             Apply.update(data)
-            return UpdateSuccess(u'报名信息更新成功')
+            return UpdateSuccess(msg=u'报名信息更新成功')
     Apply.insert(data)
-    return RegisterSuccess(u'报名成功')
+    return RegisterSuccess(msg=u'报名成功')
 
 
 @api.route('/collection', methods=['POST'])

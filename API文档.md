@@ -18,15 +18,24 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "账号注册成功"
+    "data": {
+        "list": [
+            {
+                "count": 0
+            }
+        ]
+    },
+    "msg": "社团添加成功"
 }
 ```
 - 失败返回值(示例):
 ```json
 {
-    "code": 4006,
-    "msg": "该社团已注册管理员"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -47,22 +56,20 @@
 ```json
 {
     "code": 0,
-    "data": [
-        {
-            "acess_token": "token",
-            "id": "302ff00ddb9cb45c970a316e5212bb34",
-            "name": "超级管理员",
-            "scope": 2
-        }
-    ],
-    "msg": "账号登录成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值(示例):
 ```json
 {
-    "code": 4008,
-    "msg": "提交的信息不能为空值"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -85,15 +92,20 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "密码修改成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": 4000,
-    "msg": "旧密码错误"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -118,11 +130,13 @@
 ```json
 {
     "code": 0,
-    "data": [
-        {
-            "count": 0
-        }
-    ],
+    "data": {
+        "list": [
+            {
+                "count": 0
+            }
+        ]
+    },
     "msg": "社团添加成功"
 }
 ```
@@ -130,6 +144,9 @@
 ```json
 {
     "code": 4008,
+    "data": {
+        "errlist": []
+    },
     "msg": "提交的信息不能为空值"
 }
 ```
@@ -144,7 +161,15 @@
 ```json
 {
     "code": 0,
-    "data": [],
+    "data": {
+        "list": [
+            {
+                "id": "c4ca4238a0b923820dcc509a6f75849b",
+                "name": "1",
+                "update_time": "2019-08-06"
+            }
+        ]
+    },
     "msg": "获取社团列表成功"
 }
 ```
@@ -152,6 +177,9 @@
 ```json
 {
     "code": 4001,
+    "data": {
+        "errlist": []
+    },
     "msg": "该页不存在"
 }
 ```
@@ -167,14 +195,21 @@
 ```json
 {
     "code": 0,
-    "data": [],
+    "data": {
+        "list": []
+    },
     "msg": "删除成功"
 }
 ```
 - 失败返回值:
 ```json
- "data": "失败信息",
- "code": "错误码"
+{
+    "code": 4001,
+    "data": {
+        "errlist": []
+    },
+    "msg": "删除失败,该社团不存在"
+}
 ```
 <hr/>
 
@@ -206,8 +241,11 @@
 - 失败返回值:
 ```json
 {
-    "code": 4008,
-    "msg": "提交的信息不能为空值"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -221,14 +259,19 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "获取部门列表成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```
@@ -242,14 +285,19 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "获取部门列表成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```
@@ -264,15 +312,20 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "部门删除成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": 4001,
-    "msg": "删除失败, 该部门不存在"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -292,15 +345,20 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "社团简介添加成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": 4008,
-    "msg": "提交的信息不能为空值"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -313,20 +371,21 @@
 - 成功返回值:
 ```json
 {
-  "code": 0,
-  "data":[
-     {
-    "body": {},
-    "update_time":""
-     }
-        ]
+    "code": 0,
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值
 ```json
 {
-    "code": 4001,
-    "msg": "该社团不存在简介"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -362,8 +421,10 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "报名成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -377,7 +438,8 @@
 ```json
 {
     "code": 0,
-    "data": [
+    "data": {
+        "list":[
         {
             "adjust": "",
             "college": "",
@@ -396,15 +458,19 @@
             "society": "",
             "student_id": ""
         }
-    ],
+    ]
+    },
     "msg": "用户信息获取成功"
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": 4001,
-    "msg": "该用户不存在"
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
+    "msg": ""
 }
 ```
 <hr/>
@@ -423,15 +489,20 @@
 - 成功返回值:
 ```json
 {
-  "code": 0,
-  "msg": "保存成功",
-  "data": []
- }
+    "code": 0,
+    "data": {
+      "list": []
+    },
+    "msg": ""
+}
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```
@@ -445,15 +516,20 @@
 - 成功返回值:
 ```json
 {
-  "code": 0,
-  "msg": "xx部门报名信息获取成功",
-  "data": []
+    "code": 0,
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```
@@ -468,14 +544,19 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "社团报名信息获取成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```
@@ -491,14 +572,19 @@
 ```json
 {
     "code": 0,
-    "data": [],
-    "msg": "社团报名信息重置成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```
@@ -526,18 +612,19 @@
 ```json
 {
     "code": 0,
-    "data": [
-        {
-            "count": 3
-        }
-    ],
-    "msg": "数据导入成功"
+    "data": {
+      "list": []
+    },
+    "msg": ""
 }
 ```
 - 失败返回值:
 ```json
 {
-    "code": "",
+    "code": "xx",
+    "data": {
+        "errlist": []
+    },
     "msg": ""
 }
 ```

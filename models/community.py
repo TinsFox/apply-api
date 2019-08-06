@@ -72,7 +72,7 @@ class Apply(BaseModel):
     once_work = Column('Once Work', VARCHAR(50), comment='曾任职务')
     # ----------------------------------------------------------------
     phone = Column('Phone', VARCHAR(11), nullable=False, comment='联系电话')
-    email = Column('Email', VARCHAR(50), comment='邮箱')
+    email = Column('Email', VARCHAR(100), comment='邮箱')
     society_id = Column('Society ID', VARCHAR(64), nullable=False, comment='社团编号')
     section_id = Column(VARCHAR(64), ForeignKey('section.id'), nullable=False, comment='意向部门编号')
     second_section_id = Column('Second Section', VARCHAR(64), comment='第二意向部门编号')
@@ -127,16 +127,16 @@ def process_data(user, forms):
     user.once_work = forms.get('onece_work') if forms.get('onece_work') else '无'
 
     user.phone = forms.get('phone')
-    user.email = forms.get('email')
+    user.email = forms.get('email') if forms.get('email') else '无'
     user.section_id = forms.get('section_id')
     user.second_section_id = forms.get('second_section_id') if forms.get('second_section_id') else '无'
     user.adjust = forms.get('adjust') if forms.get('adjust') else '不服从'
 
-    user.skill = forms.get('skill')
+    user.skill = forms.get('skill') if forms.get('skill') else '无'
     user.other_organization = forms.get('other_organization') if forms.get('other_organization') else '无'
-    user.introduction = forms.get('introduction')
-    user.new_idea = forms.get('new_idea')
-    user.reason = forms.get('reason')
+    user.introduction = forms.get('introduction') if forms.get('introduction') else '无'
+    user.new_idea = forms.get('new_idea') if forms.get('new_idea') else '无'
+    user.reason = forms.get('reason') if forms.get('reason') else '无'
 
     # user.section = o
 

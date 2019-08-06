@@ -4,9 +4,11 @@ from libs.exceptions.errors import FormError
 
 class BaseForm(Form):
     def validate_or_error(self):
+        data = []
         if not super(BaseForm, self).validate():
-            msg = ''.join([_ for _ in self.errors.values()][0])
-            raise FormError(msg)
+            for value in self.errors.values():
+                data.extend(value)
+            raise FormError(msg='表单格式错误', data=data)
         return self
 
 
