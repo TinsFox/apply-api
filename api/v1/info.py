@@ -42,20 +42,26 @@ def section_info(id, page):
     end = page * 15
     start = end - 15
     section = Section.query.filter_by(id=id, society_id=g.society_id).first_or_404(description=u'该部门不存在')
+    totals = len(section.applies)
+    count = (totals // 15) + 1 if totals % 15 != 0 else totals // 15
     data = [dict(user, **{'section': section.name, 'society': section.society.name}) for user in section.applies[start: end]]
-    return ViewSuccess(msg=u'%s部门报名信息获取成功' % section.name, data=data)
+    return ViewSuccess(msg=u'%s部门报名信息获取成功' % section.name, data=data, others={'max_page': count})
 
 
-@api.route('/society-info', methods=['GET'])
+@api.route('/society-info/<int:page>', methods=['GET'])
 @auth.login_required
-def society_info():
+def society_info(page):
     """
     # 获取社团报名信息
     :return:
     """
-    data = defaultdict(list)
-    society = Society.query.get_or_404(g.society_id)
-    for section in society.sections:
-        data[section.name].extend([dict(user, **{'section': user.section.name, 'society': user.section.society.name})
-                                   for user in section.applies])
-    return ViewSuccess(msg=u'社团报名信息获取成功', data=data)
+    data = []
+    users = Apply.query.filter_by(society_id=g.society_id).all()
+    if page <= 0:
+        raise NotFound('该页不存在')
+    end = page * 15
+    start = end - 15
+    for user in users[start: end]:
+        data.append(dict(user, **{'section': user.section.name}))
+    count = (len(users) // 15) + 1 if len(users) % 15 != 0 else len(users) // 15
+    return ViewSuccess(msg=u'社团报名信息获取成功', data=data, others={'max_page': count})

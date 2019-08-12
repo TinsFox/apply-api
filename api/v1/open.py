@@ -6,7 +6,8 @@ from api import SmallBlueprint
 from models.community import Society, Apply
 from models.user import User
 from models.rich_text import RichText
-from libs.exceptions import EmptyError, UpdateSuccess, RegisterSuccess, AuthFailed, ViewSuccess, NotFound
+from libs.exceptions import EmptyError, UpdateSuccess, RegisterSuccess, AuthFailed, ViewSuccess, NotFound, \
+    RepeatError
 from libs.forms.apply import ApplyFrom
 
 
@@ -24,11 +25,12 @@ def society_list(page):
         raise NotFound('该页不存在')
     end = page * 15
     start = end - 15
-
     society = Society.query
     if not society.first():
         raise EmptyError(u'当前社团列表为空')
-    return ViewSuccess(msg=u'获取社团列表成功', data=society.slice(start, end).all())
+    count = (society.count() // 15) + 1 if society.count() % 15 != 0 else society.count() // 15
+    return ViewSuccess(msg=u'获取社团列表成功', data=society.slice(start, end).all(),
+                       others={'max_page': count})
 
 
 @api.route('/section/<string:id>', methods=['GET'])
@@ -66,8 +68,9 @@ def user_apply():
         raise EmptyError()
     ApplyFrom(data=data).validate_or_error()
     if Apply.query.filter_by(student_id=data.get('student_id'), society_id=data.get('society_id')).first():
-            Apply.update(data)
-            return UpdateSuccess(msg=u'报名信息更新成功')
+            # Apply.update(data)
+            # return UpdateSuccess(msg=u'报名信息更新成功')
+        raise RepeatError()
     Apply.insert(data)
     return RegisterSuccess(msg=u'报名成功')
 

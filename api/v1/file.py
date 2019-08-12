@@ -57,19 +57,21 @@ def file_upload():
             if '社团' not in table.cell_value(0, 1):
                 raise FormError(u'文件上传失败,请检查表中格式是否正确')
             for num in range(1, table.nrows):
-                count = 1
+                count = 1   # 第一列
                 for row in table.row_values(num):
                     # id = None
-                    if count == 1: pass
-                    elif count == 2:
+                    if count == 1: pass     # 序号列
+                    elif count == 2:        # 社团列
                         id = generate_id(row)
                         if not Society.query.filter_by(name=row).first():
-                            success_count += 1
                             Society.insert(row)
                     else:
+                        if not row:
+                            continue
                         society = Society.query.get(id)
                         if not Section.query.filter_by(name=row, society_id=id).first():
                             Section.insert(society, row)
+                            success_count += 1
                     count += 1
     else:
         raise FormError(msg=u'文件上传失败,文件后缀错误')

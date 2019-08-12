@@ -8,12 +8,14 @@ class ApiHttpException(HTTPException):
     errcode = None
     data = []
 
-    def __init__(self, msg=None, data=None):
+    def __init__(self, msg=None, data=None, others=None):
         super(ApiHttpException, self).__init__(msg)
         if msg is not None:
             self.message = msg
         if data is not None:
             self.data = data
+        self.others = others
+
 
     @property
     def generate_body(self):
@@ -40,10 +42,12 @@ class ApiSuccess(ApiHttpException):
                     'list': []
                 }
         }
+
         if self.data:
-            return dict(t, **{'data': {'list': self.data if isinstance(self.data, list) else [self.data]}})
-        else:
-            return t
+            t = dict(t, **{'data': {'list': self.data if isinstance(self.data, list) else [self.data]}})
+        if self.others is not None and isinstance(self.others, dict):
+            t['data'].update(self.others)
+        return t
 
 
 class ApiFailed(ApiHttpException):

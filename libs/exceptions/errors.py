@@ -62,3 +62,8 @@ class DeleteFailed(ApiFailed):
     message = u'删除失败'
     errcode = 4009
 
+
+class RepeatError(ApiFailed):
+    code = 200
+    message = u'该用户已经存在'
+    errcode = 4010

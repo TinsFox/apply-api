@@ -49,3 +49,25 @@ def delete_society(id):
     else:
         rich_text.delete()
     return DeleteSuccess()
+
+
+@api.route('/delete-all', methods=['DELETE'])
+@auth.login_required
+def delete_all_society():
+    """
+    # 重置所有社团报名信息
+    :return:
+    """
+    societies = Society.query
+    for society in societies.all():
+        for section in society.sections:
+            section.delete()
+            Apply.delete(section.applies)
+        society.delete()
+        try:
+            rich_text = RichText.query.get_or_404(society.id)
+        except Exception:
+            raise DeleteSuccess()
+        else:
+            rich_text.delete()
+    return DeleteSuccess(u'所有社团报名信息重置成功')

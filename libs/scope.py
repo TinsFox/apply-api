@@ -12,7 +12,7 @@ class SocietyScope(object):
 
 class GeneralScope(SocietyScope):
     # 超级管理员
-    general_permission = ['append_society', 'delete_society', 'file_upload']
+    general_permission = ['append_society', 'delete_society', 'file_upload', 'delete_all_society']
     general_forbbiden = ['append_section', 'delete_section', 'user_info', 'section_info', 'society_info',
                          'append_brief', 'admin_section_list', 'reset_society']
 

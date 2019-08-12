@@ -168,7 +168,8 @@
                 "name": "1",
                 "update_time": "2019-08-06"
             }
-        ]
+        ],
+        "max_page": 1
     },
     "msg": "获取社团列表成功"
 }
@@ -276,6 +277,7 @@
 }
 ```
 <hr/>
+
 ### 查看部门列表[管理员]
 - [x] 测试
 - 请求方式: ***GET***
@@ -518,7 +520,8 @@
 {
     "code": 0,
     "data": {
-      "list": []
+      "list": [],
+      "max_page": 1
     },
     "msg": ""
 }
@@ -538,14 +541,34 @@
 ### 获取社团报名信息
 - [x] 测试
 - 请求方式: ***GET***
-- API: *http://127.0.0.1:5000/api/v1/society-info*
+- API: *http://127.0.0.1:5000/api/v1/society-info/页数*
 - 权限: 社团管理员
 - 成功返回值:
 ```json
 {
     "code": 0,
     "data": {
-      "list": []
+      "list": [
+      {
+            "adjust": "",
+            "college": "",
+            "email": "",
+            "introduction": "",
+            "name": "",
+            "new_idea": "",
+            "once_work": "",
+            "other_organization": "",
+            "phone": "",
+            "profession": "",
+            "reason": "",
+            "section": "",
+            "sex": "",
+            "skill": "",
+            "student_id": "",
+            "section": ""
+        }
+        ],
+      "max_page": 1
     },
     "msg": ""
 }
@@ -631,3 +654,18 @@
 <hr/>
 
 
+### 删除所有信息
+- [x] 测试
+- 请求方式: ***DELETE***
+- API: *http://127.0.0.1:5000/api/v1/delete-all*
+- 权限: 超级管理员
+- 成功返回值:
+```json
+{
+    "code": 0,
+    "data": {
+      "list": []
+    },
+    "msg": ""
+}
+```
