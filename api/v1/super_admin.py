@@ -2,7 +2,7 @@
 from flask import request
 from api import SmallBlueprint
 from libs.token import auth
-from libs.exceptions import EmptyError, DeleteSuccess, RegisterSuccess
+from libs.exceptions import EmptyError, DeleteSuccess, RegisterSuccess, ServerError
 from models.community import Society, Apply
 from models.rich_text import RichText
 
@@ -58,16 +58,18 @@ def delete_all_society():
     # 重置所有社团报名信息
     :return:
     """
-    societies = Society.query
-    for society in societies.all():
-        for section in society.sections:
-            section.delete()
-            Apply.delete(section.applies)
-        society.delete()
-        try:
-            rich_text = RichText.query.get_or_404(society.id)
-        except Exception:
-            raise DeleteSuccess()
-        else:
-            rich_text.delete()
-    return DeleteSuccess(u'所有社团报名信息重置成功')
+    try:
+        societies = Society.query
+        for society in societies.all():
+            for section in society.sections:
+                section.delete()
+                Apply.delete(section.applies)
+            society.delete()
+
+            rich_text = RichText.query.get(society.id)
+            if rich_text:
+                rich_text.delete()
+    except Exception:
+        raise ServerError()
+    else:
+        return DeleteSuccess(msg=u'所有社团报名信息重置成功')
