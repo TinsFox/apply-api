@@ -16,7 +16,7 @@ class ApplyFrom(BaseForm):
     once_work = StringField()
 
     phone = StringField(validators=[DataRequired(message=u'电话字段丢失'), Length(11, 11, message=u'手机号码长度不为11为数字')])
-    email = StringField(validators=[Length(6, 25, message=u'邮箱长度不为6~25位之间')])
+    email = StringField()
     section_id = StringField(validators=[DataRequired(u'部门编号字段丢失')])
     second_section_id = StringField()
     adjust = StringField()
