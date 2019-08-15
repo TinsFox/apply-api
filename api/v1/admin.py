@@ -57,7 +57,8 @@ def append_brief():
         raise EmptyError()
     rich_text = RichText.query.filter_by(id=g.society_id).first()
     if rich_text:
-        RichText.update(g.society_id, rich_text)
+        rich_text.delete()
+        RichText.insert(g.society_id, data)
         return UpdateSuccess(msg=u'社团简介更新成功')
     else:
         RichText.insert(g.society_id, data)
